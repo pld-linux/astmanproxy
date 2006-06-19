@@ -1,0 +1,28 @@
+diff -dur -x '*~' astmanproxy-1.20.orig/1.20/Makefile astmanproxy-1.20/1.20/Makefile
+--- astmanproxy-1.20.orig/1.20/Makefile	2006-04-08 05:03:21.000000000 +0200
++++ astmanproxy-1.20/1.20/Makefile	2006-06-19 10:31:55.000000000 +0200
+@@ -60,7 +60,7 @@
+ VPATH = src
+ 
+ # Add -g below for debug/GDB symbols
+-CFLAGS+= $(DEFINES) -Wall -O2 -D_REENTRANT -fPIC -Isrc/include -I/usr/include/openssl -I-
++CFLAGS+= $(DEFINES) -Wall $(rpmcflags) -D_REENTRANT -fPIC -Isrc/include -I/usr/include/openssl -I-
+ 
+ # For printing only
+ SRCS := $(MODS:%=%.c)
+@@ -69,13 +69,13 @@
+ all: astmanproxy cert
+ 
+ astmanproxy: $(OBJS) $(SOBJS)
+-	$(CC) $(CFLAGS) -o $@ $(ASTLINK) $(OBJS) $(LIBS)
++	$(CC) $(CFLAGS) -o $@ $(ASTLINK) $(OBJS) $(LIBS) $(rpmldflags)
+ 
+ $(OBJS): %.o: %.c
+ 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+ 
+ $(SOBJS): %.so: %.o
+-	$(CC) $(SOLINK) $< -o $@
++	$(CC) $(SOLINK) $< -o $@ $(rpmldflags)
+ 
+ SERIAL=`date "+%Y%m%d%H%M%S"`
+ 
