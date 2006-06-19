@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# astmanproxy	astmanproxy -- Asterisk Manager API Proxy
+#
+# chkconfig:	2345 80 20
+# description:	Startup/shutdown script for Asterisk Manager API Proxy
+# processname:	astmanproxy
+#
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/astmanproxy ] && . /etc/sysconfig/astmanproxy
+
+RETVAL=0
+case "$1" in
+  start)
+	if [ ! -f /var/lock/subsys/astmanproxy ]; then
+		msg_starting astmanproxy
+		daemon /usr/sbin/astmanproxy
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/astmanproxy
+	else
+		msg_already_running astmanproxy
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/astmanproxy ]; then
+		msg_stopping astmanproxy
+		killproc astmanproxy
+		rm -f /var/lock/subsys/astmanproxy >/dev/null 2>&1
+	else
+		msg_not_running astmanproxy
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  status)
+	status astmanproxy
+	exit $?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|status}"
+	exit 3
+esac
+
+exit $RETVAL
