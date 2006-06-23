@@ -1,7 +1,6 @@
-#
-#
 %define		timestamp 20060407-2351
 Summary:	Asterisk's manager interface proxy
+Summary(pl):	Proxy do interfeksu zarz±dzaj±cego Asteriska
 Name:		astmanproxy
 Version:	1.20
 Release:	0.1
@@ -19,16 +18,25 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The need for a proxy to Asterisk's manager interface has been clear;
-almost all GUIs and other interfaces to asterisk implement a proxy of
+almost all GUIs and other interfaces to Asterisk implement a proxy of
 some kind. Why? A proxy offers:
 
- - A single persistent connection to asterisk
+ - A single persistent connection to Asterisk
  - A more secure (non-root) TCP interface
  - Ability to offer filtered input/output
- - Less connections and networking load for asterisk
+ - Less connections and networking load for Asterisk
+
+%description -l pl
+Potrzeba proxy dla interfejsu zarz±dzaj±cego Asteriska jest jasna;
+prawie wszystkie GUI i inne interfejsy do Asteriska implementuj± jaki¶
+rodzaj proxy. Dlaczego? Proxy oferuje:
+ - pojedyncze, sta³e po³±czenie z Asteriskiem
+ - bezpieczeniejszy (nie dzia³aj±cy z poziomu roota) interfejs TCP
+ - mo¿liwo¶æ filtrowania wej¶cia/wyj¶cia
+ - mniej po³±czeñ i obci±¿enia sieci dla Asteriska.
 
 %prep
-%setup -q -cn %{name}-%{version}
+%setup -q -c
 %patch0 -p1
 
 %build
@@ -40,12 +48,9 @@ cp configs/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd %{version}
-rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,/etc/sysconfig}
 
-%{__make} install \
+%{__make} -C %{version} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PREFIX=%{_prefix} \
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/%{name}
@@ -72,6 +77,7 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*
+%dir %{_sysconfdir}/asterisk
 %{_sysconfdir}/asterisk/*
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
