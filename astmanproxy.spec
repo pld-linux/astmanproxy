@@ -1,6 +1,6 @@
 %define		timestamp 20060407-2351
 Summary:	Asterisk's manager interface proxy
-Summary(pl.UTF-8):   Proxy do interfeksu zarządzającego Asteriska
+Summary(pl.UTF-8):	Proxy do interfeksu zarządzającego Asteriska
 Name:		astmanproxy
 Version:	1.20
 Release:	0.1
