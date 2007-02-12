@@ -1,6 +1,6 @@
 %define		timestamp 20060407-2351
 Summary:	Asterisk's manager interface proxy
-Summary(pl):	Proxy do interfeksu zarz±dzaj±cego Asteriska
+Summary(pl.UTF-8):   Proxy do interfeksu zarzÄ…dzajÄ…cego Asteriska
 Name:		astmanproxy
 Version:	1.20
 Release:	0.1
@@ -26,14 +26,14 @@ some kind. Why? A proxy offers:
  - Ability to offer filtered input/output
  - Less connections and networking load for Asterisk
 
-%description -l pl
-Potrzeba proxy dla interfejsu zarz±dzaj±cego Asteriska jest jasna;
-prawie wszystkie GUI i inne interfejsy do Asteriska implementuj± jaki¶
+%description -l pl.UTF-8
+Potrzeba proxy dla interfejsu zarzÄ…dzajÄ…cego Asteriska jest jasna;
+prawie wszystkie GUI i inne interfejsy do Asteriska implementujÄ… jakiÅ›
 rodzaj proxy. Dlaczego? Proxy oferuje:
- - pojedyncze, sta³e po³±czenie z Asteriskiem
- - bezpieczeniejszy (nie dzia³aj±cy z poziomu roota) interfejs TCP
- - mo¿liwo¶æ filtrowania wej¶cia/wyj¶cia
- - mniej po³±czeñ i obci±¿enia sieci dla Asteriska.
+ - pojedyncze, staÅ‚e poÅ‚Ä…czenie z Asteriskiem
+ - bezpieczeniejszy (nie dziaÅ‚ajÄ…cy z poziomu roota) interfejs TCP
+ - moÅ¼liwoÅ›Ä‡ filtrowania wejÅ›cia/wyjÅ›cia
+ - mniej poÅ‚Ä…czeÅ„ i obciÄ…Å¼enia sieci dla Asteriska.
 
 %prep
 %setup -q -c
